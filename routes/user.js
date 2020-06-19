@@ -8,7 +8,7 @@ router.post('/register', (req, res) => {
   let { userName, email, password, birthDate } = req.body;
 
   if (!userName || !email || !password || !birthDate) {
-    res.status(400).send('Bad request');
+    res.status(400).json({msg:'Bad request'});
   }
   else {
     password = bcrypt.hashSync(password, 10);
@@ -33,22 +33,22 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res) => {
   let { email, password } = req.body;
   if (!email || !password) {
-    res.status(400).send('Bad request');
+    res.status(400).json({msg:'Bad request'});
   }
   else {
     User.findOne({ email }, (err, user) => {
       if (err) {
-        res.status(500).send('Internal server error');
+        res.status(500).json({msg:'Internal server error'});
       } else {
         if (user) {
           if (!bcrypt.compareSync(password, user.password)) {
-            return res.status(401).send('Invalid password');
+            return res.status(401).json({msg:'Invalid password'});
           }
           let payload = { subject: user._id }
           let token = jwt.sign(payload, 'secretKey')
           res.status(200).send({ token, id: user._id, userName: user.userName });
         } else {
-          res.status(401).send('Invalid email');
+          res.status(401).json({msg:'Invalid email'});
         }
       }
     });
