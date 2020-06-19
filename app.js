@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const port = 3000;
 
 const userRoutes = require('./routes/user');
+const newsRoutes = require('./routes/news');
 
 
 const app = express();
@@ -15,6 +16,7 @@ app.use(bodyParser.json());
 app.listen(port, () => console.log(`Server running on port ${port}`));
 
 app.use('/user', userRoutes);
+app.use('/news', newsRoutes);
 
 
 
@@ -37,32 +39,5 @@ mongoose.connect(db, err => {
   }
 });
 
-
-function verifyToken(req, res, next) {
-  if (!req.headers.authorization) {
-    return res.status(401).json({msg:'Unauthorized request'})
-  }
-  let token = req.headers.authorization.split(' ')[1];
-  if (token === 'null') {
-    return res.status(401).json({msg:'Unauthorized request'})
-  }
-  let payload = jwt.verify(token, 'secretKey');
-  if (!payload) {
-    return res.status(401).json({msg:'Unauthorized request'})
-  }
-  let userId = payload.subject;
-  User.findOne({ _id: userId }, (err, user) => {
-    if (err) {
-      res.status(500).json({msg:'Internal server error'})
-    } else {
-      if (user) {
-        req.user = user;
-        next();
-      } else {
-        res.status(401).json({msg:'Destroyed token'})
-      }
-    }
-  });
-}
 
 module.exports = app;
