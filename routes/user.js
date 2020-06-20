@@ -36,7 +36,7 @@ router.post('/register', (req, res) => {
       } else {
         var mailOptions = {
           from: 'yodawy.new.task@gmail.com',
-          to: 'abdulla.bably99@gmail.com',
+          to: email,
           subject: 'News app task',
           text: `Hello ${userName},
           We are so happy for your interest to register with our app,

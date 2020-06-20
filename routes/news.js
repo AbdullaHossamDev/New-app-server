@@ -90,7 +90,7 @@ router.delete('/delete/:id', verifyToken, (req, res) => {
     if (err) {
       res.status(500).send('Internal server error');
     } else {
-        res.status(200).json({msg:'User deleted successfully'})
+        res.status(200).json({msg:'New deleted successfully'})
     }   
   })
 })
