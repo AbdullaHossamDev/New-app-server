@@ -36,7 +36,7 @@ router.post('/register', (req, res) => {
       } else {
         var mailOptions = {
           from: 'yodawy.new.task@gmail.com',
-          to: 'abdulla.bably99@gmail.com',
+          to: email,
           subject: 'News app task',
           text: `Hello ${userName},
           We are so happy for your interest to register with our app,
@@ -53,7 +53,7 @@ router.post('/register', (req, res) => {
             console.log(error);
             res.status(500).json({ msg: 'Internal server error', error });
           } else {
-            res.status(200).json({msg: 'Please check your mail'});
+            res.status(200).json({ msg: 'Please check your mail', password });
           }
         });
       }
@@ -87,6 +87,19 @@ router.post('/login', (req, res) => {
     });
   }
 });
+
+//for testing
+router.delete('/delete/:id', (req, res) => {
+  const { id } = req.params;
+
+  User.deleteOne({ _id: id }, (err, data) => {
+    if (err) {
+      res.status(500).send('Internal server error');
+    } else {
+      res.status(200).json({ msg: 'User deleted successfully' })
+    }
+  })
+})
 
 
 

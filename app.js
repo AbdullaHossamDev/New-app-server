@@ -24,9 +24,9 @@ app.use('/news', newsRoutes);
 
 const mongoose = require('mongoose');
 var db = ''
-// process.env.ENV = 'Test';
+process.env.ENV = 'Test';
 if (process.env.ENV == 'Test') {
-  db = "mongodb+srv://admin:admin@cluster0-idjkv.mongodb.net/yodawyDB?retryWrites=true&w=majority"
+  db = "mongodb+srv://admin:admin@cluster0-idjkv.mongodb.net/yodawyDB_test?retryWrites=true&w=majority"
 }
 else {
   db = "mongodb+srv://admin:admin@cluster0-idjkv.mongodb.net/yodawyDB?retryWrites=true&w=majority"
