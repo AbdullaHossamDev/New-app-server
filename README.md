@@ -14,7 +14,7 @@ Github: https://github.com/AbdullaHossamDev/News-App
 
 Run node app.js for a dev server. Navigate to http://localhost:3000/. 
 
-#Running unit tests
+# Running unit tests
 
 Run npm test to execute the unit tests, in testing branch
 
