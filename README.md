@@ -10,7 +10,7 @@ Docker image: https://hub.docker.com/repository/docker/abdullahossam/news-app-se
 
 Github: https://github.com/AbdullaHossamDev/News-App
 
-##Development server
+# Development server
 
 Run node app.js for a dev server. Navigate to http://localhost:3000/. 
 
